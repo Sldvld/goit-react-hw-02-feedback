@@ -1,8 +1,9 @@
 import React from 'react';
+import { Statistics } from './Statistics/Statistics';
 
-export class Counter extends React.Component {
+export class App extends React.Component {
+  static = { value: 0 };
   state = { good: 0, neutral: 0, bad: 0 };
-
   handleIncrement = () => {
     this.setState(prevState => {
       return {
@@ -44,7 +45,14 @@ export class Counter extends React.Component {
         <button type="button" onClick={this.handleDecrement}>
           Bad
         </button>
-        <h3>Statistics</h3>
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
+        />
+        {/* <h3>Statistics</h3>
         <span>Good: {this.state.good}</span>
         <br />
         <span>Neutral: {this.state.neutral}</span>
@@ -55,7 +63,7 @@ export class Counter extends React.Component {
         <br />
         <span>
           Positive feedback: {this.countPositiveFeedbackPercentage()}%
-        </span>
+        </span> */}
       </div>
     );
   }
