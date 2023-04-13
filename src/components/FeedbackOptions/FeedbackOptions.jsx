@@ -1,33 +1,20 @@
 import PropTypes from 'prop-types';
 
-export const FeedbackOptions = ({
-  handleIncrement,
-  handleDecrement,
-  handleNeutral,
-}) => {
+export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <ul>
-      <li>
-        <button type="button" onClick={handleIncrement}>
-          Good
-        </button>
-      </li>
-      <li>
-        <button type="button" onClick={handleNeutral}>
-          Neutral
-        </button>
-      </li>
-      <li>
-        <button type="button" onClick={handleDecrement}>
-          Bad
-        </button>
-      </li>
+      {options.map(option => (
+        <li key={option}>
+          <button type="button" onClick={() => onLeaveFeedback(option)}>
+            {option}
+          </button>
+        </li>
+      ))}
     </ul>
   );
 };
 
 FeedbackOptions.propTypes = {
-  handleDecrement: PropTypes.string.isRequired,
-  handleIncrement: PropTypes.string.isRequired,
-  handleNeutral: PropTypes.string.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+  option: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

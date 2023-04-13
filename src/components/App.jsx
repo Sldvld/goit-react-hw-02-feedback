@@ -7,32 +7,20 @@ import { Notification } from './Notification/Notification';
 export class App extends React.Component {
   static = { value: 0 };
   state = { good: 0, neutral: 0, bad: 0 };
-  handleIncrement = () => {
+  handleFeedback = option => {
     this.setState(prevState => {
       return {
-        good: prevState.good + 1,
-      };
-    });
-  };
-  handleNeutral = () => {
-    this.setState(prevState => {
-      return {
-        neutral: prevState.neutral + 1,
-      };
-    });
-  };
-  handleDecrement = () => {
-    this.setState(prevState => {
-      return {
-        bad: prevState.bad + 1,
+        [option]: prevState[option] + 1,
       };
     });
   };
   countTotalFeedback = () => {
-    return this.state.good + this.state.bad + this.state.neutral;
+    const { good, neutral, bad } = this.state;
+    return good + bad + neutral;
   };
   countPositiveFeedbackPercentage = () => {
-    return Math.floor((100 / this.countTotalFeedback()) * this.state.good);
+    const { good } = this.state;
+    return Math.floor((100 / this.countTotalFeedback()) * good);
   };
 
   render() {
@@ -40,9 +28,8 @@ export class App extends React.Component {
       <>
         <Section title="Please leave feedback">
           <FeedbackOptions
-            handleIncrement={this.handleIncrement}
-            handleNeutral={this.handleNeutral}
-            handleDecrement={this.handleDecrement}
+            options={Object.keys(this.state)}
+            onLeaveFeedback={this.handleFeedback}
           />
         </Section>
         <Section title="Statistics">
