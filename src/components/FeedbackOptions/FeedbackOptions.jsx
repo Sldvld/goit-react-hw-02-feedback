@@ -12,11 +12,12 @@ export const FeedbackOptions = ({
           Good
         </button>
       </li>
-
       <li>
         <button type="button" onClick={handleNeutral}>
           Neutral
         </button>
+      </li>
+      <li>
         <button type="button" onClick={handleDecrement}>
           Bad
         </button>
