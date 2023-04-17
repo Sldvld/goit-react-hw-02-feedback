@@ -1,0 +1,25 @@
+.buttonsList {
+  display: flex;
+  text-decoration: none;
+  list-style: none;
+  gap: 40px;
+  justify-content: center;
+  padding: 0;
+  text-decoration: none;
+}
+.feedbackButton {
+  width: 100px;
+  font-size: 15px;
+  padding: 7px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  font-weight: 800;
+  transition: background-color 0.3s ease-in-out;
+}
+.feedbackButton:hover {
+  background-color: #ff942c;
+}
+.feedbackButton::first-letter {
+  text-transform: uppercase;
+}
